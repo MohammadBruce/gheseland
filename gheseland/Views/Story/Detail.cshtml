@@ -1,0 +1,241 @@
+﻿@using gheseland.Services.Implements
+@model gheseland.ViewModel.Story.StoryListViewModel
+@{
+    /**/
+
+    var story = Model.AllStories.FirstOrDefault();
+    ViewBag.Title = story.StoryName;
+    var _userService = new UserService();
+    var user = _userService.GetUserInfo();
+}
+@section header
+{
+    <meta name="author" content="قصه لند">
+    <meta name="description" content="@story.StoryName -  @(story.StoryText.Length>140?story.StoryText.Substring(1, 140):story.StoryText)">
+    <meta name="keywords" content="قصه لند , @story.StoryName ">
+    <meta name="robots" content="index follow">
+    <meta name="copyright" content="2018-2019">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0 user-scalable=no width=device-width">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="قصه لند - @story.StoryName ">
+    <meta property="og:description" content="@story.StoryName -  @(story.StoryText.Length>140?story.StoryText.Substring(1, 140):story.StoryText)" />
+    <meta property="og:site_name" content="قصه لند">
+    <meta property="og:image" content="@story.StoryImageThum" />
+    <meta property="og:image:secure_url" content="@story.StoryImageThum" />
+    <meta property="og:image:alt" content="قصه لند , @story.StoryName " />
+    <meta property="og:url" content="http://web.gheseland.com" />
+    <!-- Twitter Card data -->
+    <meta property="twitter:site" content="http://web.gheseland.com">
+    <meta property="twitter:title" content="قصه لند - @story.StoryName ">
+    <meta property="twitter:creator" content="gheseland">
+    <meta property="twitter:domain" content="web.gheseland.com">
+    <link rel="image_src" href="@story.StoryImageThum" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon-16x16.png">
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+    <!-- -Stylesheets-->
+}
+<header>
+    <div class="header-content">
+        <h1 class="header-title font-white font-lg font-bold">
+            @story.StoryName
+        </h1>
+        <a href="@Url.Action(MVC.Story.Index())" class="return">
+            <img src="/img/icons/back-icon.png">
+        </a>
+    </div>
+</header>
+<div class="home main">
+    <div class="fade-in story-content  text-center">
+        <div class="storydetail">
+            @if (story.IsMultiImage)
+            {
+                <img src="/img/icons/multiple.png" class="multipleimage" />
+            }
+            else
+            {
+                <div class="main-imageHost">
+                    <img class="main-image" src=" @story.StoryImageThum">
+                </div>
+                <div class="main-imageHost-multiple  owl-carousel">
+                </div>
+            }
+            <br>
+            <div class="container">
+                <p class="font-gray font-lg">@story.StoryName</p>
+                @if (user != null && user.HaveCashValue)
+                {
+                    <img src="/img/icons/audio/Star_off.png" class="star" onclick="story().like('@story.ID','@user.UserID')" />
+                    <div class="clearfix"></div><br />
+                }
+                <div class="bar">
+                    <div class="defaultBar" onclick="storyPlayer().click(event)">
+                        <div class="progressBar">
+                            <img src="/img/icons/audio/plainbutton.png" class="dragable" id="draggable">
+                        </div>
+                    </div>
+                    <div class="timer float-right font-black">
+                        00:00
+                    </div>
+                </div>
+                @if (user != null && user.HaveCashValue)
+                {
+
+                    <div class="audio full">
+                        <div class="clearfix"></div>
+                        <div class=" item detail">
+                            <img src="/img/icons/audio/storyinfo.png" data-toggle="modal" data-target="#mdlStoryDetail" />
+                        </div>
+                        <div class="item rewind">
+                            <img src="/img/icons/audio/rewind.png" onclick="storyPlayer().rewind()" />
+                        </div>
+                        <div class="item start">
+                            <img src="/img/icons/audio/play.png" class="player" onclick="storyPlayer('@story.StoryFile').playOrPause(event, this)" />
+                        </div>
+                        <div class="item forward">
+                            <img src="/img/icons/audio/forward.png" onclick="storyPlayer().forward()" />
+                        </div>
+                        <div class="item repeat">
+                            <img src="/img/icons/audio/repeat.png" onclick="storyPlayer().toggleRepeat()" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                }
+                else
+                {
+                    <div class="audio">
+                        <div class="clearfix"></div>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="detail col-4 pl-0">
+                                    <img src="/img/icons/audio/storyinfo.png" data-toggle="modal" data-target="#mdlStoryDetail" />
+                                </div>
+                                <div class="start col-4 px-0">
+                                    <img src="/img/icons/audio/play.png" class="player" onclick="storyPlayer('@story.StorySummaryFile').playOrPause(event, this)" />
+                                </div>
+                                <a class="buy col-4 pr-0" href="@Url.Action(MVC.Payment.Index())">
+                                    <img src="/img/icons/audio/buy-membership.png" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <br>
+                    <p class="font-dark-gray font-md">دو دقیقه گوش بده دوست داشتی اشتراک بگیر</p>
+                }
+            </div>
+        </div>
+        <div class="relatives">
+            <div class="sliding-stories">
+                <div class="container">
+                    <div class="box-title">
+                        <p class="font-gray font-smd float-right">قصه های مشابه</p>
+                        <a href="/story/index#s=@story.ID" class="font-gray font-smd float-left">بیشتر</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="ghese-list list owl-carousel story-slider">
+                </div>
+            </div>
+            <div class="sliding-stories">
+                <div class="container">
+                    <div class="box-title">
+                        <p class="font-gray font-smd float-right">قصه هایی از همین قصه گو</p>
+                        <a href="/story/index#n=@story.StoryNarratorID ^txt=@story.StoryNarrator" class="font-gray font-smd float-left">بیشتر</a>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div class="ghese-list list owl-carousel relstory-slider">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="mdlStoryDetail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body">
+                @Html.Partial(MVC.Partial.Views._StoryExDetail, story)
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer  text-center">
+                <span class="font-gray font-lg btn-block close-modal" data-dismiss="modal">بستن</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Story Modal -->
+<div class="modal" id="mdlStoryText">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal header -->
+            <div class="modal-header  text-center">
+                <div class="header-content">
+                    <p class="header-title font-white font-lg font-bold">
+                        @story.StoryName
+                    </p>
+                    <i class="fas fa-search fa-times font-white" data-dismiss="modal"></i>
+                </div>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                @story.StoryText
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script>
+        var currentStoryId = 0;
+        var userId = '@((user != null)?user.UserID.ToString():"")';
+        var telegramShareUrl = 'https://telegram.me/share/url?url=' + encodeURIComponent(location.href);
+        var whatsappShareUrl = 'whatsapp://send?text=' + encodeURIComponent(window.location.href);
+        var emailShareUrl = 'mailto:?subject=اشتراک گزاری قصه&amp;body=لطفا این قصه را گوش بده' + encodeURIComponent(location.href)
+        $(function () {
+            currentStoryId = @story.ID;
+            story().getSimularStories(currentStoryId);
+            story().getNaratorStories('@story.StoryNarratorID');
+            story().getStorykewords(currentStoryId);
+            story().getStoryAges(currentStoryId);
+            story().getStorySubjects(currentStoryId);
+            story().getStoryImageList(currentStoryId);
+            if (userId!='') {
+                story().getLikeStatus(currentStoryId, userId);
+            }
+    });
+        $("#draggable").draggable({
+            axis: 'x',
+            zIndex: 100,
+            drag: function( event, ui ) {
+                storyPlayer().drag(event, ui)
+
+  }
+        });
+        function shareOnTelegram() {
+            location.href = telegramShareUrl;
+        }
+        function shareOnWhatsapp() {
+            location.href = whatsappShareUrl;
+        }
+        function shareOnEmail() {
+            location.href = emailShareUrl;
+        }
+        function enableShareItems(isEnable) {
+            if (isEnable) {
+                $('.share').hide();
+                $('.shareItems').show();
+            } else {
+                $('.shareItems').hide();
+                $('.share').show();
+            }
+        }
+    </script>
+}

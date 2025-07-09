@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "خرید بسته";
+
+}
+@model IEnumerable<gheseland.ViewModel.Package.PackageViewModel>
+<header>
+    <div class="header-content">
+        <p class="header-title font-white font-lg font-bold">
+            قصه لند
+        </p>
+
+        <a href="@Url.Action(MVC.Story.Index())" class="return">
+            <img src="/img/icons/back-icon.png">
+        </a>
+
+    </div>
+</header>
+<div class="home main">
+
+
+
+
+    <div class="fade-in home-content  text-center">
+        <form id="registerform" method="post" action="@Url.Action(MVC.Payment.Actions.Detail())">
+
+            @Html.AntiForgeryToken()
+
+            <div class="pakages">
+                <div class="container">
+                    <div class="inner-items">
+                        <br />
+
+                        <p class="font-dark-gray font-md text-right">شما میتوانید یکی از اشتراک های ماهیانه را انتخاب کنید و طی این مدت به طور نامحدود همه ی قصه های موجود در برنامه را بارها و بارها گوش کنید</p>
+                        <br />
+                        <p class="font-dark-gray font-md text-right">نوع اشتراک خود را اینجا انتخاب کنید</p>
+                        <select class="custominput" name="packageId" required>
+                            <option value="">لطفا یک بسته را انتخاب کنید ...</option>
+                            @foreach (var package in Model)
+                            {
+                                <option value="@package.ID">@package.PakageTitle</option>
+
+                            }
+                        </select>
+                        <div class="clearfix"></div>
+                        <br />
+                        <p class="font-dark-gray font-md text-right">چنان چه کد تخفیف یا کد معرف دارید اینجا وارد و در غیر این صورت ادامه دهید</p>
+
+                        <input type="text" name="giftCode" class="custominput" placeholder="درج کد" />
+                    </div>
+                </div>
+                <button class="endbuttom text-center">
+                    <p class="font-lg text-center" style="width: 100%"> تایید و ادامه</p>
+                </button>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>

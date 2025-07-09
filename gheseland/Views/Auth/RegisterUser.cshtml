@@ -1,0 +1,200 @@
+﻿@using System.Diagnostics.Eventing.Reader
+@{
+    Layout = null;
+}
+@model IEnumerable<gheseland.ViewModel.Common.CountryViewModel>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    @Styles.Render("~/css/bootstrap")
+    @Styles.Render("~/css/main")
+    <title>ورود به قصه لند</title>
+</head>
+<body>
+    <div class="register main">
+        @if (ViewBag.RegType == "register" && ViewBag.IsIntroduced == "f")
+        {
+            <div class="introduce-pwa">
+                <div class="contain">
+                    <div class="logo-containger">
+                        <img src="/img/icons/icon-512x512.png" class="logo">
+                    </div>
+                    <div class="desc">
+                        <h5>وب اپلیکیشن قصه لند را به صفحه موبایل خود اضافه کنید</h5><br />
+                        <div class="part">
+                            <div class="num">1</div>
+                            <p>در مرورگر <span class="eng">Safari</span> موبایل خود وارد آدرس زیر شوید.</p>
+                            <a class="eng" href="http://web.gheseland.com">web.gheseland.com</a>
+                        </div>
+                        <div class="part">
+                            <div class="num">2</div>
+                            <p>در نوار پایین روی دکمه ی <span class="eng">Share</span> تپ کنید.</p>
+                        </div>
+                        <div class="part">
+                            <div class="num">3</div>
+                            <p>در منوی بازشده در قسمت پایین گزینه ی <br /><span class="eng">Add to home screen</span> را انتخاب کنید.</p>
+                        </div>
+                        <div class="part">
+                            <div class="num">4</div>
+                            <p>در مرحله ی بعد در قسمت بالا روی <span class="eng">Add</span> تپ کنید.</p>
+                        </div>
+                        <div class="bt">
+                            <a class="btn btn-success btn-block" onclick="removeintroduce()">متوجه شدم</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="fade-in register-content  text-center">
+            @if (ViewBag.RegType == "register")
+            {
+                <div class="logo-containger">
+                    <img src="/img/icons/icon-512x512.png" class="logo">
+                </div>
+                <form id="registerform" method="post" action="@Url.Action(MVC.Auth.Actions.RegisterUser())">
+                    <div class="inputs-box">
+                        @Html.AntiForgeryToken()
+                        <p class="help-block font-lg font-white text-right">شماره تلفن همراه</p>
+                        <div class="input-group mb-3 font-lg">
+                            <select class="input-group-prepend input-group-text" onchange="locationChange($(this).val())" name="ext">
+                                @if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <option value="@item.Country_Code">@item.Country_Code - @item.Country_name_FA</option>
+                                    }
+                                }
+                            </select>
+                            <input type="text" class="form-control txtphonenumber" name="phoneNumber" placeholder="9121111111" maxlength="13">
+                        </div>
+                        <div class="email-box">
+                            <p class="help-block font-lg font-white text-right">آدرس ایمیل</p>
+                            <div class="input-group mb-3 font-lg">
+                                <input type="text" class="form-control email" name="email" placeholder="sample@mail.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="register-btn">
+                        دریافت کد
+                    </button>
+                    <div class="clearfix"></div>
+                    <a href="@Url.Action(MVC.Story.Index())" class="reglater font-white font-xlg">
+                        بعدا ثبت نام میکنم
+                        <img src="/img/icons/next-later.png">
+                    </a>
+                </form>
+
+            }
+        </div>
+        <div class="fade-in login-content  text-center">
+            @if (ViewBag.RegType == "login")
+            {
+                <form id="loginform" method="post" action="@Url.Action(MVC.Auth.Actions.LoginUser())">
+                    @Html.AntiForgeryToken()
+                    @if (string.IsNullOrEmpty(ViewBag.Email))
+                    {
+                        <p class="help-block font-lg font-white text-right">کد ارسال شده را وارد کنید</p>
+
+                    }
+                    else
+                    {
+                        <p class="help-block font-md font-white text-right" style="text-align: justify !important;  direction: rtl;">کدی را که به ایمیل شما ارسال شده است اینجا وارد کنید(پوشه اسپم ایمیل خودد را هم بررسی کنید)</p>
+                    }
+                    <div class="mb-3 font-lg">
+                        <input type="hidden" name="phoneNumber" value="@ViewBag.PhoneNumber">
+                        <input type="hidden" name="email" value="@ViewBag.Email">
+                        <input type="hidden" name="ext" value="@ViewBag.Ext">
+                        <input type="number" class="form-control txtphonenumber" name="loginCode">
+                    </div>
+                    <a id="hideMsg" style="color:#fff">
+                        ارسال مجدد کد <span>60</span> ثانیه
+                    </a>
+                    <br />
+                    <button class="register-btn">
+                        ورود
+                    </button>
+                    <a href="@Url.Action(MVC.Auth.RegisterUser())" class="register-btn">
+                        بازگشت
+                    </a>
+                </form>
+            }
+        </div>
+    </div>
+    @Scripts.Render("~/js/libraries")
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <!-- Story Modal -->
+        <div class="modal" id="mdlErrorText" aria-modal="true">
+            <div class="modal-dialog  modal-sm">
+                <div class="modal-content" style="direction: rtl">
+                    <!-- Modal header -->
+                    <div class="modal-body  text-center">
+                        <br />
+                        <p class="font-xmd">
+                            @ViewBag.ErrorMessage
+                        </p>
+                        <div class="clearfix"></div>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">متوجه شدم</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(window).on('load', function () {
+                $('#mdlErrorText').modal('show');
+            });
+
+
+        </script>
+    }
+    <script>
+        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
+            || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) {
+            // do noting
+        } else {
+            window.location.replace('http://www.gheseland.com/');
+        }
+        function resendCode() {
+            location.reload();
+        }
+
+        function locationChange(value) {
+            if (value == "+98") {
+                $('.email-box').hide();
+            }
+            else {
+                $('.email-box').show();
+            }
+        }
+        function readyCode() {
+            var sec = 60;
+            // send code
+            $('#hideMsg').css('opacity', '0.5');
+            $('#hideMsg').attr('onclick', '');
+
+            var timer = setInterval(function () {
+                $('#hideMsg span').text(sec--);
+                if (sec === -1) {
+                    $('#hideMsg').css('opacity', '1');
+                    $('#hideMsg').attr('onclick', 'resendCode()');
+
+                    clearInterval(timer);
+                }
+            }, 1000);
+
+        }
+        function removeintroduce() {
+            $('.introduce-pwa').slideUp();
+            document.cookie = "pwa=t";
+        }
+        $(function () {
+            readyCode();
+        });
+    </script>
+</body>
+</html>

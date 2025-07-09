@@ -1,0 +1,716 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{405F9C66-0E29-4CCF-BD37-2800B70EC258}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gheseland</RootNamespace>
+    <AssemblyName>gheseland</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fluentx, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fluentx.2.0.4\lib\Fluentx.dll</HintPath>
+    </Reference>
+    <Reference Include="Fluentx.Mvc, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fluentx.Mvc.1.0.4\lib\Fluentx.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.6\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.6\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.6\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="T4MVCExtensions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\T4MVCExtensions.4.2.1\lib\net45\T4MVCExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AuthController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\StoryController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="PartialController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Startup.cs" />
+    <Compile Include="StoryController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4MVC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ir.shaparak.pec.conf\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\ir.shaparak.pec\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="android-chrome-192x192.png" />
+    <Content Include="android-chrome-512x512.png" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="assets\bootstrap.4.3.1\css\bootstrap.min.css" />
+    <Content Include="assets\bootstrap.4.3.1\js\bootstrap.min.js" />
+    <Content Include="assets\bootstrap.4.3.1\js\jquery-3.3.1.slim.min.js" />
+    <Content Include="assets\bootstrap.4.3.1\js\popper.min.js" />
+    <Content Include="assets\jquery-3.4.1\jquery-1.11.3.min.js" />
+    <Content Include="assets\jquery-3.4.1\jquery-3.4.1.min.js" />
+    <Content Include="assets\jquery-3.4.1\jquery.mobile-1.4.5.min.js" />
+    <Content Include="assets\jquery.mobile\css\jquery.mobile-1.4.5.min.css" />
+    <Content Include="assets\jquery.mobile\images\ajax-loader.gif" />
+    <Content Include="assets\jquery.mobile\images\icons-png\action-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\action-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\alert-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\alert-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-d-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-d-l-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-d-l-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-d-r-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-d-r-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-d-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-l-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-l-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-r-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-r-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-u-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-u-l-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-u-l-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-u-r-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-u-r-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\arrow-u-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\audio-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\audio-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\back-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\back-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\bars-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\bars-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\bullets-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\bullets-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\calendar-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\calendar-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\camera-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\camera-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-d-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-d-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-l-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-l-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-r-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-r-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-u-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\carat-u-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\check-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\check-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\clock-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\clock-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\cloud-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\cloud-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\comment-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\comment-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\delete-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\delete-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\edit-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\edit-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\eye-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\eye-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\forbidden-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\forbidden-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\forward-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\forward-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\gear-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\gear-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\grid-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\grid-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\heart-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\heart-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\home-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\home-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\info-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\info-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\location-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\location-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\lock-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\lock-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\mail-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\mail-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\minus-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\minus-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\navigation-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\navigation-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\phone-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\phone-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\plus-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\plus-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\power-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\power-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\recycle-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\recycle-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\refresh-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\refresh-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\search-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\search-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\shop-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\shop-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\star-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\star-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\tag-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\tag-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\user-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\user-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\video-black.png" />
+    <Content Include="assets\jquery.mobile\images\icons-png\video-white.png" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\action-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\action-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\alert-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\alert-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-d-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-d-l-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-d-l-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-d-r-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-d-r-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-d-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-l-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-l-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-r-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-r-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-u-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-u-l-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-u-l-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-u-r-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-u-r-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\arrow-u-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\audio-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\audio-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\back-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\back-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\bars-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\bars-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\bullets-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\bullets-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\calendar-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\calendar-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\camera-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\camera-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-d-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-d-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-l-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-l-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-r-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-r-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-u-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\carat-u-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\check-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\check-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\clock-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\clock-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\cloud-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\cloud-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\comment-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\comment-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\delete-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\delete-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\edit-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\edit-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\eye-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\eye-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\forbidden-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\forbidden-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\forward-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\forward-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\gear-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\gear-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\grid-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\grid-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\heart-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\heart-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\home-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\home-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\info-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\info-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\location-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\location-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\lock-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\lock-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\mail-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\mail-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\minus-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\minus-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\navigation-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\navigation-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\phone-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\phone-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\plus-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\plus-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\power-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\power-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\recycle-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\recycle-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\refresh-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\refresh-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\search-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\search-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\shop-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\shop-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\star-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\star-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\tag-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\tag-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\user-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\user-white.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\video-black.svg" />
+    <Content Include="assets\jquery.mobile\images\icons-svg\video-white.svg" />
+    <Content Include="assets\jquery.mobile\jquery.mobile-1.4.5.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile-1.4.5.js" />
+    <Content Include="assets\jquery.mobile\jquery.mobile-1.4.5.min.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile-1.4.5.min.js" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.external-png-1.4.5.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.external-png-1.4.5.min.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.icons-1.4.5.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.icons-1.4.5.min.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.inline-png-1.4.5.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.inline-png-1.4.5.min.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.inline-svg-1.4.5.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.inline-svg-1.4.5.min.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.structure-1.4.5.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.structure-1.4.5.min.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.theme-1.4.5.css" />
+    <Content Include="assets\jquery.mobile\jquery.mobile.theme-1.4.5.min.css" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\ajax-loader.gif" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\owl.carousel.css" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\owl.carousel.min.css" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\owl.theme.default.css" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\owl.theme.default.min.css" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\owl.theme.green.css" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\owl.theme.green.min.css" />
+    <Content Include="assets\owlCarousel2-2.3.4\assets\owl.video.play.png" />
+    <Content Include="assets\owlCarousel2-2.3.4\owl.carousel.js" />
+    <Content Include="assets\owlCarousel2-2.3.4\owl.carousel.min.js" />
+    <Content Include="assets\toastr\toastr.css" />
+    <Content Include="assets\toastr\toastr.min.css" />
+    <Content Include="assets\toastr\toastr.min.js" />
+    <Content Include="browserconfig.xml" />
+    <Content Include="css\fontstyle.css" />
+    <Content Include="css\main.css" />
+    <Content Include="favicon-16x16.png" />
+    <Content Include="favicon-32x32.png" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\font.css" />
+    <Content Include="fonts\icons.css" />
+    <Content Include="fonts\icons.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="img\avatar.png" />
+    <Content Include="img\icons\audio\buy-membership.png" />
+    <Content Include="img\icons\audio\forward.png" />
+    <Content Include="img\icons\audio\pause.png" />
+    <Content Include="img\icons\audio\plainbutton.png" />
+    <Content Include="img\icons\audio\play.png" />
+    <Content Include="img\icons\audio\repeat-presed.png" />
+    <Content Include="img\icons\audio\repeat.png" />
+    <Content Include="img\icons\audio\rewind.png" />
+    <Content Include="img\icons\audio\Star_off.png" />
+    <Content Include="img\icons\audio\Star_on.png" />
+    <Content Include="img\icons\audio\storyinfo.png" />
+    <Content Include="img\icons\back-icon.png" />
+    <Content Include="img\icons\coin.png" />
+    <Content Include="img\icons\contact-us\email.png" />
+    <Content Include="img\icons\contact-us\instagram.png" />
+    <Content Include="img\icons\contact-us\phone.png" />
+    <Content Include="img\icons\contact-us\telegram.png" />
+    <Content Include="img\icons\contact-us\web.png" />
+    <Content Include="img\icons\exit-account.png" />
+    <Content Include="img\icons\getCodeButtom.png" />
+    <Content Include="img\icons\icon-128x128.png" />
+    <Content Include="img\icons\icon-144x144.png" />
+    <Content Include="img\icons\icon-152x152.png" />
+    <Content Include="img\icons\icon-192x192.png" />
+    <Content Include="img\icons\icon-384x384.png" />
+    <Content Include="img\icons\icon-512x512.png" />
+    <Content Include="img\icons\icon-72x72.png" />
+    <Content Include="img\icons\icon-96x96.png" />
+    <Content Include="img\icons\image0.png" />
+    <Content Include="img\icons\menu-item1.png" />
+    <Content Include="img\icons\menu-item2.png" />
+    <Content Include="img\icons\menu-item3.png" />
+    <Content Include="img\icons\multiple.png" />
+    <Content Include="img\icons\next-later.png" />
+    <Content Include="img\icons\search-tick.png" />
+    <Content Include="img\icons\share.png" />
+    <Content Include="img\icons\text.png" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\slide.png" />
+    <Content Include="js\app.js" />
+    <Content Include="js\common\config.js" />
+    <Content Include="js\common\data.js" />
+    <Content Include="js\common\urlFunctions.js" />
+    <Content Include="js\story.js" />
+    <Content Include="js\player.js" />
+    <Content Include="assets\jquery.mobile\jquery.mobile-1.4.5.min.map" />
+    <Content Include="assets\toastr\toastr.js.map" />
+    <Content Include="manifest.json" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4MVC.cs</LastGenOutput>
+    </None>
+    <None Include="T4MVC.tt.settings.xml" />
+    <Content Include="robots.txt" />
+    <Content Include="Web References\ir.shaparak.pec.conf\ClientConfirmResponseData.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Views\Payment\Result.cshtml" />
+    <Content Include="Views\Story\ContactUs.cshtml" />
+    <Content Include="Views\Story\ReportError.cshtml" />
+    <None Include="Web References\ir.shaparak.pec.conf\ConfirmService.disco" />
+    <Content Include="Web References\ir.shaparak.pec\ClientPaymentResponseDataBase.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\ir.shaparak.pec\ClientSaleResponseData.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </Content>
+    <Content Include="Web References\ir.shaparak.pec\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\ir.shaparak.pec.conf\ConfirmService.wsdl" />
+    <Content Include="Web References\ir.shaparak.pec.conf\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\ir.shaparak.pec\SaleService.disco" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Story\Index.cshtml" />
+    <Content Include="Views\Story\Search.cshtml" />
+    <Content Include="Views\Story\Filter.cshtml" />
+    <Content Include="Views\Story\Detail.cshtml" />
+    <Content Include="Views\Partial\_StoryList.cshtml" />
+    <Content Include="Views\Partial\_StoryExDetail.cshtml" />
+    <Content Include="Views\Auth\RegisterUser.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Payment\Detail.cshtml" />
+    <None Include="Web References\ir.shaparak.pec\SaleService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+    <Content Include="fonts\icons.eot" />
+    <Content Include="fonts\icons.ttf" />
+    <Content Include="fonts\icons.woff" />
+    <Content Include="fonts\icons.woff2" />
+    <Content Include="fonts\IRANSansWeb.eot" />
+    <Content Include="fonts\IRANSansWeb.ttf" />
+    <Content Include="fonts\IRANSansWeb.woff" />
+    <Content Include="fonts\IRANSansWeb.woff2" />
+    <Content Include="fonts\IRANSansWeb_Bold.eot" />
+    <Content Include="fonts\IRANSansWeb_Bold.ttf" />
+    <Content Include="fonts\IRANSansWeb_Bold.woff" />
+    <Content Include="fonts\IRANSansWeb_Bold.woff2" />
+    <Content Include="fonts\IRANSansWeb_Light.eot" />
+    <Content Include="fonts\IRANSansWeb_Light.ttf" />
+    <Content Include="fonts\IRANSansWeb_Light.woff" />
+    <Content Include="fonts\IRANSansWeb_Light.woff2" />
+    <Content Include="fonts\IRANSansWeb_Medium.eot" />
+    <Content Include="fonts\IRANSansWeb_Medium.ttf" />
+    <Content Include="fonts\IRANSansWeb_Medium.woff" />
+    <Content Include="fonts\IRANSansWeb_Medium.woff2" />
+    <Content Include="fonts\IRANSansWeb_UltraLight.eot" />
+    <Content Include="fonts\IRANSansWeb_UltraLight.ttf" />
+    <Content Include="fonts\IRANSansWeb_UltraLight.woff" />
+    <Content Include="fonts\IRANSansWeb_UltraLight.woff2" />
+    <None Include="Project_Readme.html" />
+    <None Include="T4MVC.tt.hooks.t4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gheseland.Common\gheseland.Common.csproj">
+      <Project>{01c4fa64-2519-4edb-b6e9-8a0069db488a}</Project>
+      <Name>gheseland.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gheseland.Services\gheseland.Services.csproj">
+      <Project>{4a7292f5-a937-425f-9dcd-d51ba62d9787}</Project>
+      <Name>gheseland.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gheseland.ViewModel\gheseland.ViewModel.csproj">
+      <Project>{1BB0211A-72C3-4BF8-A694-4B1910296833}</Project>
+      <Name>gheseland.ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ir.shaparak.pec.conf\</RelPath>
+      <UpdateFromURL>https://pec.shaparak.ir/NewIPGServices/Confirm/ConfirmService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>gheseland_ir_shaparak_pec_conf_ConfirmService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\ir.shaparak.pec\</RelPath>
+      <UpdateFromURL>https://pec.shaparak.ir/NewIPGServices/Sale/SaleService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>gheseland_ir_shaparak_pec_SaleService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59711</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:59711/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

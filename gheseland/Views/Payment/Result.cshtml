@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "نتیجه خرید";
+    var _userService = new UserService();
+    var user = _userService.GetUserInfo();
+}
+@using gheseland.Services.Implements
+@model gheseland.ViewModel.Package.PaymentViewModel
+<header>
+    <div class="header-content">
+        <p class="header-title font-white font-lg font-bold">
+            قصه لند
+        </p>
+
+        <a href="@Url.Action(MVC.Payment.Index())" class="return">
+            <img src="/img/icons/back-icon.png">
+        </a>
+
+    </div>
+</header>
+<div class="home main">
+
+
+
+
+    <div class="fade-in home-content  text-center">
+        <div class="container">
+            @if (Model.Status)
+            {
+                <p class="font-black font-md font-light-green">خرید شما با موفقیت انجام شد</p>
+            }
+            else
+            {
+                <p class="font-black font-md font-red">@Model.Message</p>
+            }
+
+        </div>
+    </div>
+
+</div>
+

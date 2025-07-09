@@ -1,0 +1,174 @@
+﻿@using System.Activities.Statements
+@using gheseland.Services
+@using gheseland.Services.Implements
+@{
+    ViewBag.Title = "لیست قصه ها";
+    IUserService userService = new UserService();
+    var user = userService.GetUserInfo();
+}
+<header>
+    <div class="header-content">
+        <p class="header-title font-white font-lg font-bold">
+            قصه لند
+        </p>
+        <span onclick="menu().show()" class="menu">
+            <i class="font-white fas fa-bars float-right"></i>
+        </span>
+        <a href="@Url.Action(MVC.Story.Search())" class="left-menu search-menu">
+            <i class="fas fa-search font-white"></i>
+        </a>
+        <a href="@Url.Action(MVC.Story.Index())" class="left-menu hide-menu" style="display:none">
+            <i class="fas fa-times font-white"></i>
+        </a>
+    </div>
+</header>
+<div class="home main">
+    <div class="dark-back" onclick="menu().hide()"></div>
+    <div class="rightMenuBox">
+        <div class="userInfo">
+            <img src="/img/avatar.png" />
+            @if (user != null)
+            {
+                <p class="font-md">
+                    <span class="font-lg">کودک </span> عزیز سلام
+                </p>
+            }
+            else
+            {
+                <a href="@Url.Action(MVC.Auth.RegisterUser())" class="font-md font-lg">
+                    ورود به سیستم
+                </a>
+            }
+        </div>
+        <div class="inner">
+            <div class="menuItems">
+                <a href="@Url.Action(MVC.Story.ContactUs())" class="font-gray">
+                    <img src="/img/icons/menu-item2.png" class="float-right contact-logo">
+                    <span>ارتباط با قصه لند</span>
+                </a>
+                <a href="@Url.Action(MVC.Story.ReportError())" class="font-gray">
+                    <img src="/img/icons/menu-item1.png" class="float-right cooprateus">
+                    <span>گزارش خطا</span>
+                </a>
+                @if (user != null)
+                {
+
+                    <a href="/?ext=true" class="font-gray">
+                        <img src="/img/icons/exit-account.png" class="float-right exit">
+                        <span>خروج از حساب کاربری</span>
+                    </a>
+
+
+                }
+            </div>
+        </div>
+        @{
+
+            <a href="@Url.Action(MVC.Payment.Index())">
+                <div class="eshterak">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-8">
+                                @if (user != null && user.HaveCashValue)
+                                {
+                                    <p class="font-white font-xlg">تمدید اشتراک </p>
+                                    <p class="font-red font-xs" style="direction: rtl">@user.ExpireRemainigTotal </p>
+                                }
+                                else
+                                {
+                                    <p class="font-white font-xlg" style="margin-top: 20px">خرید اشتراک </p>
+                                }
+                            </div>
+                            <div class="col-4 px-0 text-center">
+                                <img src="/img/icons/coin.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+    <div class="fade-in home-content  text-center">
+        <div class="container">
+            <div class="filtersort">
+                <div class="row">
+                    <div class="col-6">
+                        <a class="font-sm item font-black" data-toggle="collapse" href="#sorItems" role="button" aria-expanded="false" aria-controls="sorItems">
+                            مرتب سازی
+                        </a>
+                    </div>
+                    <div class="col-6 rtl">
+                        <i onclick="story().filter.removeFilters()" class="filterIcon fa fa-times font-red" style="
+                                      font-size: 35px;
+                                      position: absolute;
+                                      right: 24px;
+                                      top: -5px; display: none;
+                                  "></i>
+                        <a href="@Url.Action(MVC.Story.Filter())" class="font-sm item font-black ">فیلترینگ <span class="filter-count"></span></a>
+                    </div>
+                </div>
+                <div class="collapse" id="sorItems">
+                    <div class="card card-body">
+                        <a class="sortitem font-md font-white" data-toggle="collapse"
+                           onclick="story().getStoriesBySort(1)" href="#sorItems" role="button" aria-expanded="false" aria-controls="sorItems">
+                            جدیدترین ها
+                        </a>
+                        <a class="sortitem font-md font-white" data-toggle="collapse"
+                           onclick="story().getStoriesBySort(2)" href="#sorItems" role="button" aria-expanded="false" aria-controls="sorItems">
+                            قدیمی ترین ها
+                        </a>
+                        <a class="sortitem font-md font-white" data-toggle="collapse"
+                           onclick="story().getStoriesBySort(3)"
+                           href="#sorItems" role="button" aria-expanded="false" aria-controls="sorItems">
+                            کوتاه ترین ها
+                        </a>
+                        <a class="sortitem font-md font-white" data-toggle="collapse"
+                           onclick="story().getStoriesBySort(4)" href="#sorItems" role="button" aria-expanded="false" aria-controls="sorItems">
+                            بلند ترین ها
+                        </a>
+                        <a class="sortitem font-md font-white" data-toggle="collapse"
+                           onclick="story().getStoriesBySort(5)" href="#sorItems" role="button" aria-expanded="false" aria-controls="sorItems">
+                            بیشترین پخش
+                        </a>
+                        <a class="sortitem font-md font-white" data-toggle="collapse"
+                           onclick="story().getStoriesBySort(6)" href="#sorItems" role="button" aria-expanded="false" aria-controls="sorItems">
+                            بیشترین لایک
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-loader">
+            <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <div class="inner-main">
+            <!-- banners -->
+            <div class="owl-carousel main-slider">
+            </div>
+            <!-- slider -->
+            <div class="ghese-list list">
+                <div class="container">
+                    <div class="row">
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both" />
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+@section scripts
+{
+    <script>
+        $(function () {
+            story().getAllStoriesContent();
+
+        });
+        $(window).bind('hashchange', function () {
+            story().getAllStoriesContent();
+        });
+    </script>
+}

@@ -1,0 +1,72 @@
+﻿@model gheseland.ViewModel.Story.StoryItemsViewModel
+@{
+    ViewBag.Title = "فیلتر قصه ها";
+    var parnets = Model.ParentList;
+    var childs = Model.ChildList;
+}
+
+<header>
+    <div class="header-content">
+        <p class="header-title font-white font-lg font-bold">
+            فیلتر
+        </p>
+       
+        <a href="@Url.Action(MVC.Story.Index())" class="left-menu">
+            <i class="fas fa-search fa-times font-white"></i>
+        </a>
+    </div>
+</header>
+<div class="filter main white">
+
+    <div class="filter">
+        <div class="filter-body">
+            <div class="row">
+                <div class="inner-items">
+                    @foreach (var item in childs)
+                    {
+                        var showTxt = "d-none";
+                        if (item.ParentID == parnets.First().ID)
+                        {
+                            showTxt = "d-block";
+                        }
+                    <div class="container">
+                        <div class="custom-control custom-checkbox mb-3 child item @showTxt" data-parent="@item.ParentID">
+                            <input type="checkbox" class="custom-control-input" id="checkbox-@item.ParentID-@item.ID" name="checkbox-@item.ParentID" onchange="story().filter.setItem(this)">
+                            <label class="custom-control-label" for="checkbox-@item.ParentID-@item.ID">@item.Value</label>
+                          
+                        </div>
+                    </div>
+                       
+                        
+                    }
+                    
+                </div>
+                <div class="pl-0 main-items">
+                    @foreach (var item in parnets)
+                    {
+                        var activeText = "";
+                        if (item==parnets.First())
+                        {
+                            activeText = "active";
+                        }
+                        <div class="item item-@item.ID @activeText" name="@item.ID" onclick="story().filter.setFilterChileds(@item.ID)">
+                            <p>
+                               @item.Value (<span>0</span>)
+                            </p>
+                        </div>
+                    }
+                    
+                   
+                </div>
+            </div>
+        </div>
+        <div class="endbuttom text-center" onclick="story().filter.submitFilter()">
+            <p class="font-lg"> فیلتر کن</p>
+        </div>
+    </div>
+
+
+</div>
+
+
+

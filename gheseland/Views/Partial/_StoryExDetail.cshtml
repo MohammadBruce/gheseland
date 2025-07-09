@@ -1,0 +1,81 @@
+﻿@model gheseland.ViewModel.Story.StoryViewModel
+@{
+    var story = Model;
+}
+<style>
+
+
+    .shareItems {
+        background-color: #fff;
+        padding: 10px 10px;
+        border-radius: 5px;
+        display: none
+    }
+</style>
+<p class="text-center font-xlg font-dark-gray">@story.StoryName</p>
+<div class="row">
+    <div class="col-4 story-thumb">
+        <img src="@story.StoryImageThum">
+    </div>
+    <div class="col-8">
+        <p class="text-right font-md font-gray">قصه گو</p>
+        <p class="text-right font-xlg font-light-blue">
+            <a href="/story/index#n=@story.StoryNarratorID ^txt=@story.StoryNarrator">
+                @story.StoryNarrator
+            </a>
+        </p>
+        <p class="text-right font-lg font-blcak">
+            زمان قصه :
+            <span>@story.StoryTime دقیقه</span>
+        </p>
+    </div>
+</div>
+<div class="story-tags storyTagList">
+</div>
+<div class="clearfix"></div>
+<br>
+<p class="text-right font-md font-gray">رده سنی</p>
+<div class="story-tags storyAgeList">
+</div>
+<div class="clearfix"></div>
+<br>
+<p class="text-right font-md font-gray">نویسنده</p>
+<p class="text-right font-lg font-black">@story.StoryWriter</p>
+<div class="clearfix"></div>
+<p class="text-right font-md font-gray">دسته بندی</p>
+<div class="story-tags storySubjectList">
+</div>
+<div class="clearfix"></div>
+<br>
+<p class="text-right font-md font-gray">شخصیت ها</p>
+<p class="text-right font-lg font-black">@story.StoryCharacters</p>
+<div class="shareItems">
+    <div class="row">
+        <div class="col-12 ">
+            <a onclick="enableShareItems(false)"><i class="fa fa-times"></i></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <p class="text-right font-xmd">برای اشتراک قصه برروی نرم افزارهای زیر کلیک کنید</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 text-center"><a onclick="shareOnTelegram()"><i class="fab fa-telegram" style="color:#0088CC;font-size: 50px;"></i><br /></a></div>
+        <div class="col-4 text-center"><a onclick="shareOnWhatsapp()"><i class="fab fa-whatsapp" style="color:#4FCE5D;font-size: 50px;"></i><br /></a></div>
+        <div class="col-4 text-center"> <a onclick="shareOnEmail()"><i class="fas fa-at" style="font-size: 50px;"></i></a><br /></div>
+    </div>
+    <br />
+</div>
+<div class="share row">
+    <div class="col-6 unit text-center">
+        <a href="javascript:void(0)" data-toggle="modal" data-target="#mdlStoryText">
+            <img src="/img/icons/text.png">
+            <p class="font-md font-black">متن قصه</p>
+        </a>
+    </div>
+    <div class="col-6 unit text-center" onclick="enableShareItems(true)">
+        <img src="/img/icons/share.png">
+        <p class="font-md font-black">اشتراک گذاری</p>
+    </div>
+</div>

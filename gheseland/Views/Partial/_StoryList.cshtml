@@ -1,0 +1,27 @@
+﻿@model IEnumerable<gheseland.ViewModel.Story.StoryViewModel>
+
+@if (Model != null)
+{
+    var storyList = Model;
+    foreach (var story in storyList)
+    {
+        if (story != null)
+        {
+            <div class=" col-12 ">
+                <div class="ghese-unit">
+                    <a href="@Url.Action(MVC.Story.Detail(story.ID))" data-transition = "slide">
+                        <div class="image">
+                            <img src="@story.StoryImage" alt="@story.StoryName">
+                        </div>
+                        <div class="text">
+                            <p class="font-black font-md">@story.StoryName</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+
+    }
+}
+
+

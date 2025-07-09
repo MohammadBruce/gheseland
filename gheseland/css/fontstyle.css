@@ -1,0 +1,130 @@
+﻿.font-xs {
+    font-size: 10.6px !important;
+    font-weight: normal !important;
+}
+
+.font-xms {
+    font-size: 12.6px !important;
+    font-weight: normal !important;
+}
+
+.font-xmmd {
+    font-size: 13.29px !important;
+    font-weight: normal !important;
+}
+
+.font-xmd {
+    font-size: 14.29px !important;
+    font-weight: normal !important;
+}
+
+.font-md {
+    font-size: 15.31px !important;
+    font-weight: normal !important;
+}
+
+.font-smd {
+    font-size: 16.31px !important;
+    font-weight: normal !important;
+}
+
+.font-sm {
+    font-size: 18.37px !important;
+    font-weight: normal !important;
+}
+
+.font-lg {
+    font-size: 19.34px !important;
+    font-weight: normal !important;
+}
+
+.font-xlg {
+    font-size: 20.41px !important;
+    font-weight: normal !important;
+}
+
+.font-xmlg {
+    font-size: 22.33px !important;
+    font-weight: normal !important;
+}
+
+.font-xl {
+    font-size: 25.1px !important;
+    font-weight: normal !important;
+}
+
+.font-xxl {
+    font-size: 30px !important;
+    font-weight: normal !important;
+}
+
+.font-xxxl {
+    font-size: 40px !important;
+    font-weight: normal !important;
+}
+
+.font-black {
+    color: #1e1e1e !important;
+}
+
+.font-white {
+    color: #fff !important;
+}
+
+.font-error {
+    color: #F00 !important;
+}
+
+.font-light-gray {
+    color: #d7d9da !important;
+}
+.font-dark-gray {
+    color: #313131 !important;
+}
+.font-gray {
+    color: #585858 !important;
+}
+
+.font-gray-2 {
+    color: #9a9c9f;
+}
+
+.font-sky-blue {
+    color: #cfdbe6;
+}
+
+.font-light-blue {
+    color: #208be4;
+}
+
+.font-blue {
+    color: #566ced;
+}
+
+.font-navy-blue {
+    color: #415464;
+}
+
+.font-light-green {
+    color: #1EE8B6;
+}
+
+.font-red {
+    color: #d01818;
+}
+
+.font-orange {
+    color: #ff8122;
+}
+
+.font-light-yellow {
+    color: #ffcc1d;
+}
+
+.font-bold {
+    font-weight: bold !important;
+}
+
+.font-bolder {
+    font-weight: bolder !important;
+}

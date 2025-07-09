@@ -1,0 +1,91 @@
+﻿
+@{
+    ViewBag.Title = "فاکتور خرید";
+    var _userService = new UserService();
+    var user = _userService.GetUserInfo();
+}
+@using gheseland.Services.Implements
+@model gheseland.ViewModel.Package.PackagePrefactorViewModel
+<header>
+    <div class="header-content">
+        <p class="header-title font-white font-lg font-bold">
+            قصه لند
+        </p>
+
+        <a href="@Url.Action(MVC.Payment.Index())" class="return">
+            <img src="/img/icons/back-icon.png">
+        </a>
+
+    </div>
+</header>
+<div class="home main">
+
+
+
+
+    <div class="fade-in home-content  text-center">
+        <form id="registerform" method="post" action="@Url.Action(MVC.Payment.Actions.ConnectingToBank())">
+
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="packageId" value="@Model.PackageId" />
+            <input type="hidden" name="userId" value="@user.UserID.ToString()" />
+            <input type="hidden" name="giftCode" value="@Model.GiftCode" />
+            <div class="pakages ">
+                <div class="container">
+                    <div class="inner-items prefactor">
+                        <br />
+
+                        <p class="font-dark-gray font-lg text-center">مبلغ قابل پرداخت (تومان)</p>
+                        <hr />
+                        <p class="font-light-green font-lg text-center">@Model.PayPrice</p>
+                        <hr />
+                        <br />
+                        <p class="font-dark-gray font-lg text-center">مشخصات خرید و مدت اشتراک شما</p>
+                        <hr />
+                        <div>
+                            <p class="font-dark-gray font-xmd text-right float-right" style="width: 200px">@Model.PakageName</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <div>
+                            <p class="font-dark-gray font-xmd text-right float-right" style="width: 200px">تخفیف (@Model.DiscountPercent درصد)</p>
+                            <p class="font-dark-gray font-xmd text-right float-left">@Model.DiscountPrice تومان</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <div>
+                            <p class="font-dark-gray font-xmd text-right float-right" style="width: 200px">اعتبار بسته</p>
+                            <p class="font-dark-gray font-xmd text-right float-left">@Model.PakageDays روز</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <div>
+                            <p class="font-dark-gray font-xmd text-right float-right" style="width: 200px">اعتبار هدیه</p>
+                            <p class="font-dark-gray font-xmd text-right float-left">@Model.GiftDays روز</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <div>
+                            <p class="font-dark-gray font-xmd text-right float-right" style="width: 200px">اعتبار قبلی</p>
+                            <p class="font-dark-gray font-xmd text-right float-left">@(Model.PreCreidit) روز</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                        <div>
+                            <p class="font-dark-gray font-xmd text-right float-right" style="width: 200px">مدت قابل استفاده</p>
+                            <p class="font-dark-gray font-xmd text-right float-left">@(Model.TotalDays) روز</p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr />
+                    </div>
+                </div>
+                <button class="endbuttom text-center">
+                    <p class="font-lg text-center" style="width: 100%"> پرداخت</p>
+                </button>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>

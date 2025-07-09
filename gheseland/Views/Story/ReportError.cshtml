@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "اعلام ایراد فنی";
+}
+@model IEnumerable<gheseland.ViewModel.Story.ItemViewModel>
+<header>
+    <div class="header-content">
+        <p class="header-title font-white font-lg font-bold">
+            اعلام ایراد فنی
+        </p>
+        <a href="@Url.Action(MVC.Story.Index())" class="return">
+            <img src="/img/icons/back-icon.png">
+        </a>
+    </div>
+</header>
+<div class="home main">
+    <style>
+
+
+        .modal-backdrop {
+            z-index: -1;
+        }
+    </style>
+    <div class="fade-in home-content  text-center">
+        <form id="registerform" method="post" action="@Url.Action(MVC.Story.Actions.ReportError())">
+            @Html.AntiForgeryToken()
+            <div class="pakages">
+                <div class="container">
+                    <div class="inner-items">
+                        <br />
+                        <p class="font-dark-gray font-md text-right">موضوع گزارش</p>
+                        <select class="custominput" name="errorSubject" required>
+                            <option value="">انتخاب کنید ...</option>
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.Title">@item.Title</option>
+
+                            }
+                        </select>
+                        <div class="clearfix"></div>
+                        <br />
+                        <p class="font-dark-gray font-md text-right">متن پیام</p>
+                        <textarea name="errorText" class="custominput" rows="8"></textarea>
+                    </div>
+                </div>
+                <button class="endbuttom text-center">
+                    <p class="font-lg text-center" style="width: 100%">ارسال پیام</p>
+                </button>
+            </div>
+        </form>
+        @Scripts.Render("~/js/libraries")
+        @if (ViewBag.message != null)
+        {
+            <!-- Story Modal -->
+            <div class="modal" id="mdlErrorText" aria-modal="true" style="z-index:999">
+                <div class="modal-dialog  modal-sm">
+                    <div class="modal-content" style="direction: rtl">
+                        <!-- Modal header -->
+                        <div class="modal-body  text-center">
+                            <br />
+                            <p class="font-xmd">
+                                @ViewBag.message
+                            </p>
+                            <div class="clearfix"></div>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">متوجه شدم</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $(window).on('load', function () {
+                    $('#mdlErrorText').modal('show');
+                });</script>
+        }
+    </div>
+</div>
